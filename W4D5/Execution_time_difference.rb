@@ -53,23 +53,25 @@ end
 # end
 
 
-def largest_contiguous_subsum(arr)
-  new_arr = []
+# def largest_contiguous_subsum(arr)
+#   new_arr = []
 
-  arr.each_with_index do |num1, idx1|
-    new_arr << [num1]
-    arr.each_with_index do |num2, idx2|
-      if idx2 > idx1 
-        new_arr << arr[idx1..idx2]
-      end
-    end
-  end
-  sub_arr = new_arr
+#   arr.each_with_index do |num1, idx1|
+#     new_arr << [num1]
+#     arr.each_with_index do |num2, idx2|
+#       if idx2 > idx1 
+#         new_arr << arr[idx1..idx2]
+#       end
+#     end
+#   end
+#   sub_arr = new_arr
 
-  sub_sum = sub_arr.map { |sub| sub.sum }
-  sub_sum.max
-end
+#   sub_sum = sub_arr.map { |sub| sub.sum }
+#   sub_sum.max
+# end
 
+#Quadratic O(n^2)
+#Nested Loops (dominant)
 
 
 # list = [5, 3, -7]     #=> [[5], [5, 3], [5, 3, -7], [3], [3, -7], [-7]]
@@ -78,6 +80,61 @@ end
 
 # list = [2, 3, -6, 7, -6, 7]
 # p largest_contiguous_subsum(list) # => 8 (from [7, -6, 7])
+
+# list = [-5, -1, -3]
+# p largest_contiguous_subsum(list) # => -1 (from [-1])
+
+
+# def largest_contiguous_subsum(arr)
+#   largest_sum = 0
+#   current_sum = 0
+#   i = 0
+
+#   while i < arr.length - 1 
+#     current_sum = arr[i] + arr[i + 1] 
+#     if current_sum > largest_sum 
+#       largest_sum = current_sum 
+#     end
+
+#     i += 1
+#   end
+
+#   largest_sum
+# end
+
+
+##############################################
+
+
+
+def largest_contiguous_subsum(arr)
+  largest_sum = arr[0]
+  current_sum = arr[0]
+
+  (0...arr.length).each do |idx|
+    current_sum = 0 if current_sum < 0
+      current_sum += arr[idx] 
+      largest_sum = current_sum if current_sum > largest_sum
+
+
+  end
+
+  largest_sum 
+end
+
+
+
+
+
+list = [5, 3, -7]     #=> [[5], [5, 3], [5, 3, -7], [3], [3, -7], [-7]]
+p largest_contiguous_subsum(list) # => 8
+
+puts "---------------------------"
+
+# list = [2, 3, -6, 7, -6, 7]
+# p largest_contiguous_subsum(list) # => 8 (from [7, -6, 7])
+
+# puts "---------------------------"
 
 list = [-5, -1, -3]
 p largest_contiguous_subsum(list) # => -1 (from [-1])
