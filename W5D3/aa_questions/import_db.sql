@@ -1,3 +1,5 @@
+PRAGMA foreign_keys = ON;
+
 CREATE TABLE users (
   id INTEGER PRIMARY KEY,
   fname TEXT NOT NULL,
@@ -10,7 +12,7 @@ CREATE TABLE questions (
   body TEXT NOT NULL,
   author_id INTEGER NOT NULL,
 
-  FOREIGN_KEY (author_id) REFERENCES users(id)
+  FOREIGN KEY (author_id) REFERENCES users(id)
 );
 
 CREATE TABLE question_follows (
@@ -18,26 +20,51 @@ CREATE TABLE question_follows (
   users_id INTEGER NOT NULL,
   questions_id INTEGER NOT NULL,
 
-  FOREIGN_KEY (users_id) REFERENCES users(id),
-  FOREIGN_KEY (questions_id) REFERENCES questions(id)
+  FOREIGN KEY (users_id) REFERENCES users(id),
+  FOREIGN KEY (questions_id) REFERENCES questions(id)
 
 );
 
 CREATE TABLE replies (
   id INTEGER PRIMARY KEY,
-  questions_id INTEGER NOT NULL,  -- reference to the subject question.
-  parent_reply_id INTEGER,        --  reference to its parent reply.  
-  users_id INTEGER NOT NULL,      -- reference to the user who wrote it.
-  body TEXT NOT NULL,             -- body of a reply
+  questions_id INTEGER NOT NULL,
+  parent_reply_id INTEGER,
+  users_id INTEGER NOT NULL,
+  body TEXT NOT NULL,
 
-  FOREIGN_KEY (questions_id) REFERENCES questions(id),
-  FOREIGN_KEY (parent_reply_id) REFERENCES replies(id),
-  FOREIGN_KEY (users_id) REFERENCES users(id)
+  FOREIGN KEY (questions_id) REFERENCES questions(id),
+  FOREIGN KEY (parent_reply_id) REFERENCES replies(id),
+  FOREIGN KEY (users_id) REFERENCES users(id)
 );
 
+CREATE TABLE question_likes (
+  liked BOOLEAN NOT NULL,
+  users_id INTEGER NOT NULL,
+  questions_id INTEGER NOT NULL,
 
--- question follows id, users id, questions id
+  FOREIGN KEY (users_id) REFERENCES users(id),
+  FOREIGN KEY (questions_id) REFERENCES questions(id)
+  
+);
 
--- id |
--- question|
--- reply|
+INSERT INTO
+  users (fname, lname)
+VALUES
+  ('Arthur', 'Miller'),
+  ('Eugene', 'O''Neill');
+
+INSERT INTO
+  questions (title, body, author_id)
+VALUES
+  ('Whats for lunch?', 'Anyone want to go eat?', (SELECT id FROM users WHERE fname = 'Arthur')),
+  ('Whats for dinner?', 'Is it too early to eat dinner?', (SELECT id FROM users WHERE fname = 'Eugene'));
+
+INSERT INTO
+  replies (questions_id, parent_reply_id, users_id, body)
+VALUES
+  (
+    (SELECT id FROM questions WHERE title = 'Whats for lunch?'),
+    (SELECT id FROM replies WHERE id = id), 
+    (SELECT id FROM users WHERE fname = 'Eugene'),
+    "I am down"
+  );
