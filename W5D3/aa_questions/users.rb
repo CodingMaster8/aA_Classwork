@@ -1,5 +1,6 @@
 require 'sqlite3'
 require 'singleton'
+require_relative 'questions_database'
 
 class UsersDatabase < SQLite3::Database
   include Singleton
@@ -36,5 +37,11 @@ class Users
     SQL
     Users.new(users[0])
   end
+
+  def authored_questions
+
+
+  end
+  
 
 end

@@ -12,7 +12,7 @@ class QuestionsDatabase < SQLite3::Database
 end
 
 class Question
-  attr_accessoor :title, :body, :author_id, :id
+  attr_accessor :title, :body, :author_id, :id
   def self.all
     data = QuestionsDatabase.instance.execute('SELECT * FROM questions')
     data.map { |datum| Question.new(datum)}
@@ -58,9 +58,19 @@ class Question
     WHERE
       id = ?
     SQL
-    # questions.map { |question| Question.new(question) }
+    Question.new(questions[0])
+  end
+
+  def self.find_by_author_id(author_id)
+    questions = QuestionsDatabase.instance.execute(<<-SQL, author_id)
+    SELECT
+      *
+    FROM
+      questions
+    WHERE
+      author_id = ?
+    SQL
     Question.new(questions[0])
   end
 
 end
-
