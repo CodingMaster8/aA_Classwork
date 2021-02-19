@@ -11,5 +11,11 @@
 #
 class ShortenedUrl < ApplicationRecord
 
-  # validates :short_url, presence:
+  validates :short_url, :user_id, presence: true, uniqueness: true
+  validates :long_url, presence: true
+
+  def self.random_code
+    random_url = SecureRandom::urlsafe_base64
+    random_url.exists? ? ShortenedUrl.random_code : random_url
+  end
 end
