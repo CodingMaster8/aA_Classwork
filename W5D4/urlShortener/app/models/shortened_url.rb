@@ -18,4 +18,11 @@ class ShortenedUrl < ApplicationRecord
     random_url = SecureRandom::urlsafe_base64
     random_url.exists? ? ShortenedUrl.random_code : random_url
   end
+
+  def self.shorten(object, long_url_string)
+    ShortenedUrl.create(long_url: long_url_string, short_url: ShortenedUrl.random_code, object.id)
+  end
+
 end
+
+ShortenedUrl.create(long_irl: long_url_string, short_url: ShortenedUrl.random_code, user_id: num)
