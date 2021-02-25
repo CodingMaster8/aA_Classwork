@@ -9,7 +9,6 @@ class CreateArtworks < ActiveRecord::Migration[5.2]
     end
 
     add_index :artworks, :artist_id, unique: true
-    add_index :artworks, :title, unique: true
     add_index :artworks, [:artist_id, :title], unique: true
   
   end

@@ -1,0 +1,29 @@
+/* PHASE 2: Notifications */
+
+.badge {
+  display: inline;
+  font-size: 20px;
+}
+
+.header-notifications {
+  display: none;
+  position: absolute;
+  left: -1px;
+  font-size: 18px;
+  white-space: nowrap;
+  background: #eee;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  overflow: hidden;
+}
+
+li:hover > .badge {
+  background-image: linear-gradient(to bottom, green, green, green, #eee);
+}
+
+li:hover > .header-notifications {
+  display: block;
+}
