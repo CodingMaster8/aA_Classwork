@@ -7,4 +7,5 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-  User.create([{name: 'Martin', email: 'martin28@dog.com'}, {name: 'Petunia', email: 'petuniaisthebest@gmail.com'}])
+  #User.create([{name: 'Martin', email: 'martin28@dog.com'}, {name: 'Petunia', email: 'petuniaisthebest@gmail.com'}])
+  User.create({username: 'Martin'})
