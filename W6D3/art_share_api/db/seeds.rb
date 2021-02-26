@@ -27,7 +27,7 @@
   ArtworkShare.create([
     {artwork_id: 4, viewer_id: 5},
     {artwork_id: 2, viewer_id: 4},
-    {artwork_id: 3, viewer_id: 2},
+    {artwork_id: 1, viewer_id: 2},
     {artwork_id: 5, viewer_id: 3},
-    {artwork_id: 1, viewer_id: 1}
+    {artwork_id: 3, viewer_id: 1}
   ])

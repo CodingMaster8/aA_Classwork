@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ArtworksControllerTest < ActionDispatch::IntegrationTest
+class ArtworkSharesControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
