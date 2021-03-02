@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :already_logged_in
 
   # sign up 
   def new 

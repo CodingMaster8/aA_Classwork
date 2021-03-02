@@ -1,6 +1,7 @@
 class CatsController < ApplicationController
 
   before_action :belongs_to_current_user, only: [:edit, :update]
+  before_action :require_logged_in, except: [:index, :show]
 
   def index
     @cats = Cat.all

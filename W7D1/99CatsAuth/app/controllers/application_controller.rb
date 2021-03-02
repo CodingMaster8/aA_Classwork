@@ -20,8 +20,8 @@ class ApplicationController < ActionController::Base
     @current_user = nil
   end
 
-  def already_logged_in
-    redirect_to cats_url if logged_in? 
+  def require_logged_in
+    redirect_to cats_url unless logged_in? 
   end
 
   def belongs_to_current_user

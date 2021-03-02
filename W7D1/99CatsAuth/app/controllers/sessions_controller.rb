@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :already_logged_in, except: [:destroy]
+  before_action :require_logged_in, only: [:destroy]
 
   # log in 
   def new 
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
   # log out 
   def destroy
     current_user.reset_session_token! if current_user 
-    render: new
+    render :new
   end
 
 end
