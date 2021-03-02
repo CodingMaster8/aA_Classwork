@@ -32,7 +32,11 @@ class User < ApplicationRecord
     end
   end
 
+  has_many :cats,
+    foreign_key: :user_id,
+    class_name: 'Cat'
 
-  
+
+
 
 end

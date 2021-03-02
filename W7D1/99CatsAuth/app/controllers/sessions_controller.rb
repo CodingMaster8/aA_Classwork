@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
+  before_action :already_logged_in, except: [:destroy]
 
+  # log in 
   def new 
     render :new
   end
@@ -15,6 +17,7 @@ class SessionsController < ApplicationController
     end
   end
 
+  # log out 
   def destroy
     current_user.reset_session_token! if current_user 
     render: new

@@ -12,12 +12,12 @@
 
     <% if current_user  %>
       <h1><%= current_user.user_name %></h1>
-      <form action="<%= sessions_url %>" method="POST">
+      <form action="<%= session_url %>" method="POST">
         <input type="hidden" name="_method" value="DELETE">
         <input type="submit" value="Logout">
       </form>
     <% else %>
-      <a href="<%= new_sessions_url %>">Sign in</a>
+      <a href="<%= new_session_url %>">Sign in</a>
       <a href="<%= new_user_url %>">Sign up</a>
     <% end %>
 
