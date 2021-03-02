@@ -1,4 +1,7 @@
 class CatsController < ApplicationController
+
+  before_action :belongs_to_current_user, only: [:edit, :update]
+
   def index
     @cats = Cat.all
     render :index
@@ -39,6 +42,7 @@ class CatsController < ApplicationController
       render :edit
     end
   end
+
 
   private
 

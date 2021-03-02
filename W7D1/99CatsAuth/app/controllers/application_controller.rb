@@ -24,4 +24,10 @@ class ApplicationController < ActionController::Base
     redirect_to cats_url if logged_in? 
   end
 
+  def belongs_to_current_user
+    @cat = Cat.find(params[:id])
+    redirect_to new_session_url unless @cat.user_id = current_user.id
+  end
+
+
 end

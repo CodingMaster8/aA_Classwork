@@ -5,7 +5,6 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token 
 
-
   attr_reader :password 
 
   def reset_session_token!
@@ -36,6 +35,9 @@ class User < ApplicationRecord
     foreign_key: :user_id,
     class_name: 'Cat'
 
+  has_many :requests,
+    foreign_key: :user_id,
+    class_name: "CatRentalRequest"
 
 
 
