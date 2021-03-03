@@ -1,0 +1,17 @@
+// Place all the styles related to the sessions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+h2 {
+  text-align: center;
+  color: whitesmoke;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #3b2dff, 0 0 30px #3b2dff, 0 0 40px #3b2dff, 0 0 50px #3b2dff, 0 0 75px #3b2dff;
+	letter-spacing: 5px;
+	font: 60px 'MisoRegular';
+}
+
+
+#submit-button {
+  display: block;
+  margin: 0 auto;
+}
