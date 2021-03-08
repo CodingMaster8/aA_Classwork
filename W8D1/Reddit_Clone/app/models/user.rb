@@ -7,6 +7,10 @@ class User < ApplicationRecord
     foreign_key: :moderator_id,
     class_name: :Sub
 
+  has_many :posts,
+    foreign_key: :author_id,
+    class_name: "Post"
+
   attr_reader :password
   after_initialize :ensure_session_token
 

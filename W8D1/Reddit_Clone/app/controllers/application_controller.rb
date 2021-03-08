@@ -27,8 +27,6 @@ class ApplicationController < ActionController::Base
     redirect_to users_url if logged_in?
   end
 
-  def require_moderator
-    redirect_to subs_url if current_user.subs.empty?
-  end
+
   
 end
