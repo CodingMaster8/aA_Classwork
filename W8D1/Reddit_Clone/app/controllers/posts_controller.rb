@@ -40,16 +40,10 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find_by(id: params[:id])
-
-    if @post
-      sub = @post.sub
-      @post.destroy
-      redirect_to sub_url(sub)
-    else
-      redirect_to sub_url(params[:sub_id])
-    end
+    @post.destroy if @post
+    redirect_to sub_url(params[:sub_id])
   end
-
+    
   def require_postmaster
     # if current_user.id == params[:user_id]
     if current_user.posts.find_by(id: params[:id])
