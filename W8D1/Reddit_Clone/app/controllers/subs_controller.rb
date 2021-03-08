@@ -1,6 +1,7 @@
 class SubsController < ApplicationController
 
-  before_action :require_moderator, only:[:edit, :update]
+  before_action :require_moderator, only: [:edit, :update]
+  before_action :require_logged_in, except: [:index, :show]
 
   def edit
     @sub = Sub.find_by(id: params[:id])
