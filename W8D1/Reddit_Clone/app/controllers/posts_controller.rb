@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
 
+  before_action :require_postmaster, only: [:edit, :update, :destroy]
+
   def new
     @post = Post.new
     render :new
@@ -25,7 +27,37 @@ class PostsController < ApplicationController
     render :edit
   end
 
-  
+  def update
+    @post = Post.find_by(id: params[:id])
+
+    if @post.update(post_params)
+      redirect_to post_url(@post)
+    else
+      flash.now[:errors] = @post.errors.full_messages
+      render :edit
+    end
+  end
+
+  def destroy
+    @post = Post.find_by(id: params[:id])
+
+    if @post
+      sub = @post.sub
+      @post.destroy
+      redirect_to sub_url(sub)
+    else
+      redirect_to sub_url(params[:sub_id])
+    end
+  end
+
+  def require_postmaster
+    # if current_user.id == params[:user_id]
+    if current_user.posts.find_by(id: params[:id])
+      return
+    else
+      render json: 'Forbidden'
+    end
+  end
   
   private
 
