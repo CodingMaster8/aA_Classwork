@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  
   helper_method :logged_in?, :current_user
 
   def current_user
@@ -16,6 +17,14 @@ class ApplicationController < ActionController::Base
 
   def logout!
     current_user.reset_session_token!
+  end
+
+  def require_logged_in
+    redirect_to new_session_url unless logged_in?
+  end
+
+  def require_logged_out
+    redirect_to users_url if logged_in?
   end
   
 end
