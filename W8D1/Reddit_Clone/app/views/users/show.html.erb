@@ -1,0 +1,25 @@
+<h1><%= @user.username %></h1>
+
+<label>Subs Moderated
+  <ul>
+    <% @user.subs.each do |sub| %>
+      <li>
+        <a href="<%= sub_url(sub) %>">
+          <%= sub.title %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</label>
+
+<label>Posts
+  <ul>
+    <% @user.posts.each do |post| %>
+      <li>
+        <a href="<%= post_url(post) %>">
+          <%= post.title %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</label>

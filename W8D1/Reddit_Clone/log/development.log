@@ -648,3 +648,546 @@ Processing by SubsController#show as HTML
 Completed 200 OK in 23ms (Views: 21.8ms | ActiveRecord: 0.5ms)
 
 
+Started GET "/" for ::1 at 2021-03-08 15:17:03 -0800
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/everettsmith/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.4.5/lib/active_record/log_subscriber.rb:98
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/everettsmith/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/railties-5.2.4.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/everettsmith/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/railties-5.2.4.5/lib/rails/templates/rails/welcome/index.html.erb (5.6ms)
+Completed 200 OK in 66ms (Views: 48.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/new" for ::1 at 2021-03-08 15:17:18 -0800
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (2.4ms)
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+Completed 200 OK in 2519ms (Views: 2414.1ms | ActiveRecord: 50.8ms)
+
+
+Started POST "/users" for ::1 at 2021-03-08 15:17:28 -0800
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"s294RyAoRneI8PvQmfSqVkK4CEdKM0MQKOU+lmi+/eTO72WI9uIZTfA2ve2p1jUPCBp1Ie/WeLUuTFMQYquSfw==", "user"=>{"username"=>"harrygarry", "password"=>"[FILTERED]"}}
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:22
+  [1m[36mUser Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "harrygarry"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "CETtcyV6xc_1_MPSmbQ4qQ"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:22
+  [1m[36mUser Create (6.9ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "harrygarry"], ["password_digest", "$2a$12$Zv06wjiN/djo6K7pLNq75e55OSUJ/yPsCnAs7Q7WBjEL.6VfIYh7."], ["session_token", "CETtcyV6xc_1_MPSmbQ4qQ"], ["created_at", "2021-03-08 23:17:29.321129"], ["updated_at", "2021-03-08 23:17:29.321129"]]
+  ↳ app/controllers/users_controller.rb:22
+  [1m[35m (5.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:22
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:38
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "harrygarry"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "-7lFIbtRrXjc7msQhi3psg"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38
+  [1m[36mUser Update (0.7ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "-7lFIbtRrXjc7msQhi3psg"], ["updated_at", "2021-03-08 23:17:29.354888"], ["id", 1]]
+  ↳ app/models/user.rb:38
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:38
+Redirected to http://localhost:3000/users
+Completed 302 Found in 488ms (ActiveRecord: 17.8ms)
+
+
+Started GET "/users" for ::1 at 2021-03-08 15:17:29 -0800
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-7lFIbtRrXjc7msQhi3psg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:3
+  Rendered users/index.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 88ms (Views: 68.7ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/user/1" for ::1 at 2021-03-08 15:17:41 -0800
+  
+ActionController::RoutingError (No route matches [GET] "/user/1"):
+  
+actionpack (5.2.4.5) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.4.5) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.4.5) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.4.5) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.4.5) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.4.5) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.4.5) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.4.5) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.4.5) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/user/2" for ::1 at 2021-03-08 15:17:53 -0800
+  
+ActionController::RoutingError (No route matches [GET] "/user/2"):
+  
+actionpack (5.2.4.5) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.4.5) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.4.5) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.4.5) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.4.5) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.4.5) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.4.5) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.4.5) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.4.5) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/users/1" for ::1 at 2021-03-08 15:18:16 -0800
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-7lFIbtRrXjc7msQhi3psg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[36mUser Load (6.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:16
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mSub Load (0.7ms)[0m  [1m[34mSELECT "subs".* FROM "subs" WHERE "subs"."moderator_id" = $1[0m  [["moderator_id", 1]]
+  ↳ app/views/users/show.html.erb:5
+  Rendered users/show.html.erb within layouts/application (93.6ms)
+Completed 500 Internal Server Error in 132ms (ActiveRecord: 11.2ms)
+
+
+
+SyntaxError - syntax error, unexpected ':', expecting keyword_end
+    class_name: "User"
+              ^:
+  app/models/post.rb:6:in `'
+  app/views/users/show.html.erb:17:in `_app_views_users_show_html_erb___1770324460430592115_70325776617800'
+  app/controllers/users_controller.rb:17:in `show'
+
+Started POST "/__better_errors/549fa4d09b6cb4c4/variables" for ::1 at 2021-03-08 15:18:16 -0800
+Started GET "/users/1" for ::1 at 2021-03-08 15:18:42 -0800
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-7lFIbtRrXjc7msQhi3psg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:16
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mSub Load (0.6ms)[0m  [1m[34mSELECT "subs".* FROM "subs" WHERE "subs"."moderator_id" = $1[0m  [["moderator_id", 1]]
+  ↳ app/views/users/show.html.erb:5
+  [1m[36mPost Load (4.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 1]]
+  ↳ app/views/users/show.html.erb:17
+  Rendered users/show.html.erb within layouts/application (43.8ms)
+Completed 200 OK in 202ms (Views: 105.6ms | ActiveRecord: 21.3ms)
+
+
+Started DELETE "/session" for ::1 at 2021-03-08 15:18:54 -0800
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"RktsEaNfmjQbWwFEjrBDvKFKr5eH2TREJfwjPswvhx07y3HedZXFDmOdR3m+ktzl6+jS8SI8D+EjVU64xjrohg=="}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-7lFIbtRrXjc7msQhi3psg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[35m (4.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:38
+  [1m[36mUser Exists (3.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "harrygarry"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "mNyKBHkQYMHchsG54aVMTQ"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38
+  [1m[36mUser Update (8.9ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "mNyKBHkQYMHchsG54aVMTQ"], ["updated_at", "2021-03-08 23:18:54.724316"], ["id", 1]]
+  ↳ app/models/user.rb:38
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:38
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 37ms (ActiveRecord: 19.5ms)
+
+
+Started GET "/session/new" for ::1 at 2021-03-08 15:18:54 -0800
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (1.1ms)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-7lFIbtRrXjc7msQhi3psg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+Completed 200 OK in 64ms (Views: 61.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/session/new" for ::1 at 2021-03-08 15:18:56 -0800
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (3.1ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "-7lFIbtRrXjc7msQhi3psg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+Completed 200 OK in 77ms (Views: 75.9ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/session" for ::1 at 2021-03-08 15:19:02 -0800
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"uDlJW77m7pwK5g7e036TeFYqoR0C2rfRvkOFOWXrt0zFuVSUaCyxpnIgSOPjXAwhHIjce6c/jHS46ui/b/7Y1w==", "user"=>{"username"=>"harrygarry", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "harrygarry"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:18
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:38
+  [1m[36mUser Exists (1.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "harrygarry"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "MudT9nKvh7hhrvwG-Gn1EQ"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "MudT9nKvh7hhrvwG-Gn1EQ"], ["updated_at", "2021-03-08 23:19:03.079294"], ["id", 1]]
+  ↳ app/models/user.rb:38
+  [1m[35m (20.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:38
+Redirected to http://localhost:3000/users
+Completed 302 Found in 389ms (ActiveRecord: 23.9ms)
+
+
+Started GET "/users" for ::1 at 2021-03-08 15:19:03 -0800
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "MudT9nKvh7hhrvwG-Gn1EQ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:3
+  Rendered users/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 95ms (Views: 91.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/subs" for ::1 at 2021-03-08 15:19:10 -0800
+Processing by SubsController#index as HTML
+  Rendering subs/index.html.erb within layouts/application
+  [1m[36mSub Load (4.6ms)[0m  [1m[34mSELECT "subs".* FROM "subs"[0m
+  ↳ app/views/subs/index.html.erb:5
+  Rendered subs/index.html.erb within layouts/application (7.5ms)
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "MudT9nKvh7hhrvwG-Gn1EQ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+Completed 200 OK in 129ms (Views: 120.6ms | ActiveRecord: 6.9ms)
+
+
+Started GET "/subs" for ::1 at 2021-03-08 15:24:20 -0800
+Processing by SubsController#index as HTML
+  Rendering subs/index.html.erb within layouts/application
+  [1m[36mSub Load (0.7ms)[0m  [1m[34mSELECT "subs".* FROM "subs"[0m
+  ↳ app/views/subs/index.html.erb:5
+  Rendered subs/index.html.erb within layouts/application (3.2ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "MudT9nKvh7hhrvwG-Gn1EQ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+Completed 200 OK in 141ms (Views: 138.5ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/post/new" for ::1 at 2021-03-08 15:24:32 -0800
+  
+ActionController::RoutingError (No route matches [GET] "/post/new"):
+  
+actionpack (5.2.4.5) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.4.5) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.4.5) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.4.5) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.4.5) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.4.5) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.4.5) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.4.5) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.4.5) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/posts/new" for ::1 at 2021-03-08 15:24:38 -0800
+Processing by PostsController#new as HTML
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/new.html.erb within layouts/application (740.7ms)
+Completed 500 Internal Server Error in 796ms (ActiveRecord: 20.5ms)
+
+
+
+NameError - undefined local variable or method `posts_url' for #<#<Class:0x00007febfe510648>:0x00007fec04146bd8>
+Did you mean?  post_url:
+  app/views/posts/new.html.erb:3:in `_app_views_posts_new_html_erb__4543932203306290567_70325828725820'
+  app/controllers/posts_controller.rb:7:in `new'
+
+Started POST "/__better_errors/8c7f859986f8d067/variables" for ::1 at 2021-03-08 15:24:40 -0800
+Started GET "//subs/1/posts" for ::1 at 2021-03-08 15:27:17 -0800
+  
+ActionController::RoutingError (No route matches [GET] "/subs/1/posts"):
+  
+actionpack (5.2.4.5) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.4.5) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.4.5) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.4.5) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.4.5) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.4.5) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.4.5) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.4.5) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.4.5) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/posts/new" for ::1 at 2021-03-08 15:27:58 -0800
+Processing by PostsController#new as HTML
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/new.html.erb within layouts/application (1334.6ms)
+Completed 500 Internal Server Error in 1365ms (ActiveRecord: 0.0ms)
+
+
+
+NameError - undefined local variable or method `posts_url' for #<#<Class:0x00007febfe510648>:0x00007fec00c5bc70>
+Did you mean?  post_url:
+  app/views/posts/new.html.erb:3:in `_app_views_posts_new_html_erb__4543932203306290567_70325800978020'
+  app/controllers/posts_controller.rb:7:in `new'
+
+Started POST "/__better_errors/ffccffc42a22ff3e/variables" for ::1 at 2021-03-08 15:28:01 -0800
+Started GET "/posts/new" for ::1 at 2021-03-08 15:35:59 -0800
+Processing by PostsController#new as HTML
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/new.html.erb within layouts/application (1387.3ms)
+Completed 500 Internal Server Error in 1479ms (ActiveRecord: 30.5ms)
+
+
+
+NameError - undefined local variable or method `sub_posts_url' for #<#<Class:0x00007febfc7d27e8>:0x00007febfc7b86b8>
+Did you mean?  subs_url:
+  app/views/posts/new.html.erb:3:in `_app_views_posts_new_html_erb__4543932203306290567_70325764931120'
+  app/controllers/posts_controller.rb:7:in `new'
+
+Started POST "/__better_errors/e8f5f10a0aa0e3bb/variables" for ::1 at 2021-03-08 15:36:02 -0800
+Started GET "/posts/new" for ::1 at 2021-03-08 15:38:02 -0800
+Processing by PostsController#new as HTML
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/new.html.erb within layouts/application (3.6ms)
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "MudT9nKvh7hhrvwG-Gn1EQ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+Completed 200 OK in 426ms (Views: 379.5ms | ActiveRecord: 43.2ms)
+
+
+Started POST "/posts" for ::1 at 2021-03-08 15:38:14 -0800
+Processing by PostsController#create as HTML
+  Parameters: {"authenticity_token"=>"7vf9fAaIYsywHW+dM9F3VeDpKSEVr6NkzPQncoK8VXeTd+Cz0EI99sjbKaAD8+gMqktUR7BKmMHKXUr0iKk67A==", "post"=>{"title"=>"IM a post", "content"=>"Yep"}}
+  [1m[35m (13.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/posts_controller.rb:12
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/posts_controller.rb:12
+  Rendering posts/new.html.erb within layouts/application
+  Rendered posts/new.html.erb within layouts/application (1.3ms)
+  [1m[36mUser Load (11.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "MudT9nKvh7hhrvwG-Gn1EQ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+Completed 200 OK in 258ms (Views: 149.7ms | ActiveRecord: 25.6ms)
+
+
+Started GET "/posts" for ::1 at 2021-03-08 16:16:30 -0800
+  
+ActionController::RoutingError (No route matches [GET] "/posts"):
+  
+actionpack (5.2.4.5) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.4.5) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.4.5) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.4.5) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.4.5) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.4.5) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.4.5) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.4.5) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.4.5) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.4.5) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/posts/new" for ::1 at 2021-03-08 16:16:42 -0800
+Processing by PostsController#new as HTML
+  Rendering posts/new.html.erb within layouts/application
+  [1m[36mSub Load (1.0ms)[0m  [1m[34mSELECT "subs".* FROM "subs"[0m
+  ↳ app/views/posts/new.html.erb:17
+  Rendered posts/new.html.erb within layouts/application (17.7ms)
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "MudT9nKvh7hhrvwG-Gn1EQ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+Completed 200 OK in 141ms (Views: 94.9ms | ActiveRecord: 26.7ms)
+
+
+Started GET "/subs/new" for ::1 at 2021-03-08 16:16:55 -0800
+Processing by SubsController#new as HTML
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "MudT9nKvh7hhrvwG-Gn1EQ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendering subs/new.html.erb within layouts/application
+  Rendered subs/new.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 59ms (Views: 42.5ms | ActiveRecord: 8.3ms)
+
+
+Started POST "/subs" for ::1 at 2021-03-08 16:17:04 -0800
+Processing by SubsController#create as HTML
+  Parameters: {"authenticity_token"=>"RtwY+5ZvpIaEEQ80nVdMyuFAEv4MMwKKah/32ZZu7Bo7XAU0QKX7vPzXSQmtddOTq+JvmKnWOS9stppfnHuDgQ==", "sub"=>{"title"=>"motorcycle", "description"=>"yehaw"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "MudT9nKvh7hhrvwG-Gn1EQ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/subs_controller.rb:39
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/subs_controller.rb:39
+  [1m[36mSub Create (3.0ms)[0m  [1m[32mINSERT INTO "subs" ("title", "description", "moderator_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "motorcycle"], ["description", "yehaw"], ["moderator_id", 1], ["created_at", "2021-03-09 00:17:04.287638"], ["updated_at", "2021-03-09 00:17:04.287638"]]
+  ↳ app/controllers/subs_controller.rb:39
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/subs_controller.rb:39
+Redirected to http://localhost:3000/subs/1
+Completed 302 Found in 21ms (ActiveRecord: 7.3ms)
+
+
+Started GET "/subs/1" for ::1 at 2021-03-08 16:17:04 -0800
+Processing by SubsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSub Load (0.4ms)[0m  [1m[34mSELECT  "subs".* FROM "subs" WHERE "subs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/subs_controller.rb:53
+  Rendering subs/show.html.erb within layouts/application
+  Rendered subs/show.html.erb within layouts/application (0.7ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "MudT9nKvh7hhrvwG-Gn1EQ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+Completed 200 OK in 41ms (Views: 37.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/subs/new" for ::1 at 2021-03-08 16:17:10 -0800
+Processing by SubsController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "MudT9nKvh7hhrvwG-Gn1EQ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  Rendering subs/new.html.erb within layouts/application
+  Rendered subs/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 47ms (Views: 43.5ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/subs" for ::1 at 2021-03-08 16:17:20 -0800
+Processing by SubsController#create as HTML
+  Parameters: {"authenticity_token"=>"bljqYMiv0lcIYk7o0mBFndirp/pwFFg5mqlUt6nahmAT2PevHmWNbXCkCNXiQtrEkgnanNXxY5ycADkxo8/p+w==", "sub"=>{"title"=>"not motorcycles", "description"=>"not yehaw"}}
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "MudT9nKvh7hhrvwG-Gn1EQ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/subs_controller.rb:39
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/subs_controller.rb:39
+  [1m[36mSub Create (0.6ms)[0m  [1m[32mINSERT INTO "subs" ("title", "description", "moderator_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "not motorcycles"], ["description", "not yehaw"], ["moderator_id", 1], ["created_at", "2021-03-09 00:17:20.190675"], ["updated_at", "2021-03-09 00:17:20.190675"]]
+  ↳ app/controllers/subs_controller.rb:39
+  [1m[35m (6.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/subs_controller.rb:39
+Redirected to http://localhost:3000/subs/2
+Completed 302 Found in 20ms (ActiveRecord: 10.6ms)
+
+
+Started GET "/subs/2" for ::1 at 2021-03-08 16:17:20 -0800
+Processing by SubsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mSub Load (0.4ms)[0m  [1m[34mSELECT  "subs".* FROM "subs" WHERE "subs"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/subs_controller.rb:53
+  Rendering subs/show.html.erb within layouts/application
+  Rendered subs/show.html.erb within layouts/application (0.6ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "MudT9nKvh7hhrvwG-Gn1EQ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+Completed 200 OK in 53ms (Views: 50.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/posts/new" for ::1 at 2021-03-08 16:17:25 -0800
+Processing by PostsController#new as HTML
+  Rendering posts/new.html.erb within layouts/application
+  [1m[36mSub Load (0.5ms)[0m  [1m[34mSELECT "subs".* FROM "subs"[0m
+  ↳ app/views/posts/new.html.erb:17
+  Rendered posts/new.html.erb within layouts/application (3.9ms)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "MudT9nKvh7hhrvwG-Gn1EQ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+Completed 200 OK in 50ms (Views: 47.8ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/posts" for ::1 at 2021-03-08 16:17:41 -0800
+Processing by PostsController#create as HTML
+  Parameters: {"authenticity_token"=>"95aOqQ1WCSW83QQyfk4fT6Jn0cVdx+9UrKfmN1hW8r2KFpNm25xWH8QbQg9ObIAW6MWso/gi1PGqDouxUkOdJg==", "post"=>{"title"=>"IM a post", "content"=>"IM some content", "sub_ids"=>["1"]}}
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/posts_controller.rb:11
+Completed 404 Not Found in 19ms (ActiveRecord: 0.7ms)
+
+
+
+ActiveRecord::RecordNotFound - Couldn't find Post with 'id'=[1]:
+  app/controllers/posts_controller.rb:11:in `create'
+
+Started POST "/__better_errors/456d92a6aecc1de1/variables" for ::1 at 2021-03-08 16:17:41 -0800
+Started POST "/__better_errors/456d92a6aecc1de1/eval" for ::1 at 2021-03-08 16:18:18 -0800
+Started POST "/__better_errors/456d92a6aecc1de1/eval" for ::1 at 2021-03-08 16:18:23 -0800
+Started POST "/posts" for ::1 at 2021-03-08 16:19:22 -0800
+Processing by PostsController#create as HTML
+  Parameters: {"authenticity_token"=>"95aOqQ1WCSW83QQyfk4fT6Jn0cVdx+9UrKfmN1hW8r2KFpNm25xWH8QbQg9ObIAW6MWso/gi1PGqDouxUkOdJg==", "post"=>{"title"=>"IM a post", "content"=>"IM some content", "sub_ids"=>["1"]}}
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/posts_controller.rb:11
+Completed 404 Not Found in 4ms (ActiveRecord: 0.6ms)
+
+
+
+ActiveRecord::RecordNotFound - Couldn't find Post with 'id'=[1]:
+  app/controllers/posts_controller.rb:11:in `create'
+
+Started POST "/__better_errors/da1fc51922784df5/variables" for ::1 at 2021-03-08 16:19:22 -0800
+Started GET "/subs/1" for ::1 at 2021-03-08 16:20:00 -0800
+Processing by SubsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSub Load (0.8ms)[0m  [1m[34mSELECT  "subs".* FROM "subs" WHERE "subs"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/subs_controller.rb:53
+  Rendering subs/show.html.erb within layouts/application
+  Rendered subs/show.html.erb within layouts/application (1.0ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "MudT9nKvh7hhrvwG-Gn1EQ"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6
+Completed 200 OK in 65ms (Views: 60.3ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/__better_errors/da1fc51922784df5/variables" for ::1 at 2021-03-08 16:20:59 -0800
