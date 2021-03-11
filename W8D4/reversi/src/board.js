@@ -28,7 +28,7 @@ function _makeGrid () {
  * Constructs a Board with a starting grid set up.
  */
 function Board () {
-  this.grid = _makeGrid()
+  this.grid = _makeGrid();
 }
 
 Board.DIRS = [
@@ -41,6 +41,19 @@ Board.DIRS = [
  * Checks if a given position is on the Board.
  */
 Board.prototype.isValidPos = function (pos) {
+  // x, y = pos[0], pos[y]
+  let x = pos[0];
+  let y = pos[1];
+
+  if (x < 0 || y < 0) {
+    return false;
+  }
+
+  if (x > 7 || y > 7) {
+    return false;
+  }
+
+  return true;
 };
 
 /**
@@ -48,6 +61,16 @@ Board.prototype.isValidPos = function (pos) {
  * throwing an Error if the position is invalid.
  */
 Board.prototype.getPiece = function (pos) {
+  let x = pos[0];
+  let y = pos[1];
+
+  if (!this.isValidPos(pos)) {
+    throw new Error('Not valid pos!');
+  } else if (this.grid[x][y] !== undefined) {
+    return this.grid[x][y];
+  } else {
+    return undefined;
+  }
 };
 
 /**
@@ -55,6 +78,14 @@ Board.prototype.getPiece = function (pos) {
  * matches a given color.
  */
 Board.prototype.isMine = function (pos, color) {
+  let x = pos[0];
+  let y = pos[1];
+
+  if (this.grid[x][y] === undefined) {
+    return false;
+  }
+  
+  return (this.grid[x][y].color === color);
 };
 
 /**
