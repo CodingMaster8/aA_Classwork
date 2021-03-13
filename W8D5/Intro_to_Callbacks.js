@@ -26,10 +26,41 @@ class Clock {
 
   _tick() {
     // 1. Increment the time by one second.
-    this.second += 1;
+    this.seconds()
     // 2. Call printTime.
     this.printTime();
   }
+
+  seconds() {
+    if (this.second < 59) {
+      this.second += 1;
+    } else {
+      this.second = 0;
+      this.minutes()
+    }
+    return this.second;
+  }
+
+  minutes() {
+    if (this.minute < 59) {
+      this.minute += 1;
+    } else {
+      this.minute = 0;
+      this.hour()
+    }
+    return this.minute
+  }
+
+  hours() {
+    if (this.hour < 24) {
+      this.hour += 1;
+    } else {
+      this.hour = 1;
+    }
+    return this.hour
+  }
+
+
 }
   const readline = require('readline');
 
